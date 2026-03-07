@@ -1,0 +1,11 @@
+---
+const { work, href } = Astro.props;
+---
+<a class="card" href={href}>
+  <div class="card__image"></div>
+  <div class="card__body">
+    <div class="eyebrow">{work.data.category}</div>
+    <h3>{work.data.title}</h3>
+    <p>{work.data.excerpt}</p>
+  </div>
+</a>

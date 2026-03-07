@@ -1,0 +1,20 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import WorkCard from '../../components/WorkCard.astro';
+import SectionHeading from '../../components/SectionHeading.astro';
+import { getCollection } from 'astro:content';
+
+const works = (await getCollection('works')).sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+---
+<BaseLayout title="TARUKOTO Sample | Works" description="Works list sample">
+  <div class="container">
+    <div class="kicker">Works</div>
+    <h1>制作実績</h1>
+    <section class="section">
+      <SectionHeading title="Works List" note="一覧ページもテンプレート化可能" />
+      <div class="grid">
+        {works.map((work) => <WorkCard work={work} href={`/works/${work.slug}/`} />)}
+      </div>
+    </section>
+  </div>
+</BaseLayout>

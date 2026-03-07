@@ -1,0 +1,25 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getCollection, render } from 'astro:content';
+
+export async function getStaticPaths() {
+  const works = await getCollection('works');
+  return works.map((work) => ({ params: { slug: work.slug }, props: { work } }));
+}
+
+const { work } = Astro.props;
+const { Content } = await render(work);
+---
+<BaseLayout title={`${work.data.title} | Works`} description={work.data.excerpt}>
+  <div class="container prose">
+    <div class="kicker">{work.data.category}</div>
+    <h1>{work.data.title}</h1>
+    <div class="meta">{work.data.date.toLocaleDateString('ja-JP')}</div>
+    <div class="panel" style="margin: 0 0 24px;">
+      <div class="panel__visual" style="aspect-ratio: 16/9;"></div>
+    </div>
+    <article class="prose">
+      <Content />
+    </article>
+  </div>
+</BaseLayout>

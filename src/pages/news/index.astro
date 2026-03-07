@@ -1,0 +1,25 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import SectionHeading from '../../components/SectionHeading.astro';
+import { getCollection } from 'astro:content';
+
+const posts = (await getCollection('news')).sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+---
+<BaseLayout title="TARUKOTO Sample | News" description="News list sample">
+  <div class="container">
+    <div class="kicker">News</div>
+    <h1>お知らせ</h1>
+    <section class="section">
+      <SectionHeading title="News List" note="src/content/news にファイル追加" />
+      <div class="list">
+        {posts.map((post) => (
+          <a class="list-item" href={`/news/${post.slug}/`}>
+            <div class="meta">{post.data.date.toLocaleDateString('ja-JP')}</div>
+            <h3>{post.data.title}</h3>
+            <p>{post.data.excerpt}</p>
+          </a>
+        ))}
+      </div>
+    </section>
+  </div>
+</BaseLayout>
