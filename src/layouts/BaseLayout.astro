@@ -18,13 +18,40 @@ const lang = site.locale.split('-')[0];
     <script is:inline>
       (() => {
         const storageKey = 'theme-preference';
-        const storedTheme = localStorage.getItem(storageKey);
-        const theme = storedTheme === 'light' || storedTheme === 'dark'
-          ? storedTheme
-          : window.matchMedia('(prefers-color-scheme: dark)').matches
-            ? 'dark'
-            : 'light';
-        document.documentElement.dataset.theme = theme;
+        const root = document.documentElement;
+
+        const readStoredTheme = () => {
+          try {
+            const storedTheme = localStorage.getItem(storageKey);
+            return storedTheme === 'light' || storedTheme === 'dark' ? storedTheme : null;
+          } catch {
+            return null;
+          }
+        };
+
+        const getPreferredTheme = () => {
+          const storedTheme = readStoredTheme();
+          if (storedTheme) return storedTheme;
+          return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+        };
+
+        const applyTheme = (theme) => {
+          root.dataset.theme = theme;
+          window.dispatchEvent(new CustomEvent('themechange', { detail: { theme } }));
+        };
+
+        window.__themeController = {
+          storageKey,
+          getPreferredTheme,
+          applyTheme,
+          saveTheme(theme) {
+            try {
+              localStorage.setItem(storageKey, theme);
+            } catch {}
+          },
+        };
+
+        applyTheme(getPreferredTheme());
       })();
     </script>
   </head>
