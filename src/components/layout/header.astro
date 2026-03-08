@@ -1,0 +1,22 @@
+---
+import { navItems, site } from '../../lib/site';
+
+interface Props {
+  currentPath: string;
+}
+
+const { currentPath } = Astro.props;
+---
+
+<header class="site-header">
+  <div class="container site-header__inner">
+    <a href="/" class="brand">{site.brand}</a>
+    <nav class="nav">
+      {navItems.map((item) => (
+        <a href={item.href} aria-current={currentPath === item.href ? 'page' : undefined}>
+          {item.label}
+        </a>
+      ))}
+    </nav>
+  </div>
+</header>
