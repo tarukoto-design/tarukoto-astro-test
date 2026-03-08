@@ -6,9 +6,10 @@ import { createPageTitle, site } from '../lib/site';
 
 const { title = createPageTitle(), description = site.description } = Astro.props;
 const path = Astro.url.pathname;
+const lang = site.locale.split('-')[0];
 ---
 <!doctype html>
-<html lang="ja">
+<html lang={lang}>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
