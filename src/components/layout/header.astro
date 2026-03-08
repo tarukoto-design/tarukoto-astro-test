@@ -11,12 +11,54 @@ const { currentPath } = Astro.props;
 <header class="site-header">
   <div class="container site-header__inner">
     <a href="/" class="brand">{site.brand}</a>
-    <nav class="nav">
-      {navItems.map((item) => (
-        <a href={item.href} aria-current={currentPath === item.href ? 'page' : undefined}>
-          {item.label}
-        </a>
-      ))}
-    </nav>
+    <div class="site-header__nav-group">
+      <nav class="nav">
+        {navItems.map((item) => (
+          <a href={item.href} aria-current={currentPath === item.href ? 'page' : undefined}>
+            {item.label}
+          </a>
+        ))}
+      </nav>
+      <button
+        type="button"
+        class="theme-toggle"
+        data-theme-toggle
+        aria-label="ダークモードに切り替え"
+        aria-pressed="false"
+      >
+        <span class="theme-toggle__icon" aria-hidden="true">◐</span>
+        <span class="theme-toggle__label">テーマを切り替える</span>
+      </button>
+    </div>
   </div>
 </header>
+
+<script is:inline>
+  const storageKey = 'theme-preference';
+  const root = document.documentElement;
+  const button = document.querySelector('[data-theme-toggle]');
+
+  const getPreferredTheme = () => {
+    const storedTheme = localStorage.getItem(storageKey);
+    if (storedTheme === 'light' || storedTheme === 'dark') return storedTheme;
+    return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+  };
+
+  const applyTheme = (theme) => {
+    root.dataset.theme = theme;
+    const isDark = theme === 'dark';
+    if (!button) return;
+    button.setAttribute('aria-pressed', String(isDark));
+    button.setAttribute('aria-label', isDark ? 'ライトモードに切り替え' : 'ダークモードに切り替え');
+    const icon = button.querySelector('.theme-toggle__icon');
+    if (icon) icon.textContent = isDark ? '☀' : '◐';
+  };
+
+  applyTheme(getPreferredTheme());
+
+  button?.addEventListener('click', () => {
+    const nextTheme = root.dataset.theme === 'dark' ? 'light' : 'dark';
+    localStorage.setItem(storageKey, nextTheme);
+    applyTheme(nextTheme);
+  });
+</script>

@@ -5,7 +5,56 @@
   --muted: #6c685f;
   --line: rgba(30, 29, 27, 0.12);
   --accent: #b79e7f;
+  --header-bg: rgba(247, 245, 239, 0.82);
+  --shadow-soft: 0 8px 40px rgba(0, 0, 0, 0.04);
+  --shadow-card-hover: 0 12px 30px rgba(0, 0, 0, 0.05);
+  --button-bg: transparent;
+  --button-text: var(--text);
+  --button-border: var(--text);
+  --button-hover-bg: var(--text);
+  --button-hover-text: #fff;
+  --text-soft: #3d3934;
+  --panel-visual:
+    linear-gradient(140deg, rgba(255,255,255,.7), rgba(255,255,255,0) 45%),
+    linear-gradient(120deg, #d8d0c2, #f0ece2 56%, #cdbfaa);
+  --card-visual:
+    linear-gradient(140deg, rgba(255,255,255,.85), rgba(255,255,255,0) 42%),
+    linear-gradient(125deg, #ddd2c4, #f3efe7 55%, #d6cab8);
+  --hero-glow:
+    radial-gradient(circle at top right, rgba(183, 158, 127, 0.18), transparent 42%),
+    radial-gradient(circle at bottom left, rgba(255, 253, 248, 0.85), transparent 46%);
+  --hero-border: rgba(30, 29, 27, 0.08);
   --max: 1120px;
+  color-scheme: light;
+}
+
+:root[data-theme="dark"] {
+  --bg: #161613;
+  --surface: #1f1f1b;
+  --text: #ece7dd;
+  --muted: #b0a89a;
+  --line: rgba(236, 231, 221, 0.12);
+  --accent: #bda07d;
+  --header-bg: rgba(22, 22, 19, 0.82);
+  --shadow-soft: 0 10px 40px rgba(0, 0, 0, 0.28);
+  --shadow-card-hover: 0 14px 32px rgba(0, 0, 0, 0.32);
+  --button-bg: transparent;
+  --button-text: var(--text);
+  --button-border: rgba(236, 231, 221, 0.2);
+  --button-hover-bg: #ece7dd;
+  --button-hover-text: #161613;
+  --text-soft: #d5cec1;
+  --panel-visual:
+    linear-gradient(140deg, rgba(255,255,255,.04), rgba(255,255,255,0) 45%),
+    linear-gradient(120deg, #38352f, #292824 56%, #1f1f1b);
+  --card-visual:
+    linear-gradient(140deg, rgba(255,255,255,.05), rgba(255,255,255,0) 42%),
+    linear-gradient(125deg, #3a362f, #2a2823 55%, #22211d);
+  --hero-glow:
+    radial-gradient(circle at top right, rgba(189, 160, 125, 0.16), transparent 40%),
+    radial-gradient(circle at bottom left, rgba(255, 255, 255, 0.04), transparent 44%);
+  --hero-border: rgba(236, 231, 221, 0.08);
+  color-scheme: dark;
 }
 
 * { box-sizing: border-box; }
