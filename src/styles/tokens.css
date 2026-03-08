@@ -20,10 +20,6 @@
   --card-visual:
     linear-gradient(140deg, rgba(255,255,255,.85), rgba(255,255,255,0) 42%),
     linear-gradient(125deg, #ddd2c4, #f3efe7 55%, #d6cab8);
-  --hero-glow:
-    radial-gradient(circle at top right, rgba(183, 158, 127, 0.18), transparent 42%),
-    radial-gradient(circle at bottom left, rgba(255, 253, 248, 0.85), transparent 46%);
-  --hero-border: rgba(30, 29, 27, 0.08);
   --max: 1120px;
   color-scheme: light;
 }
@@ -50,10 +46,6 @@
   --card-visual:
     linear-gradient(140deg, rgba(255,255,255,.05), rgba(255,255,255,0) 42%),
     linear-gradient(125deg, #3a362f, #2a2823 55%, #22211d);
-  --hero-glow:
-    radial-gradient(circle at top right, rgba(189, 160, 125, 0.16), transparent 40%),
-    radial-gradient(circle at bottom left, rgba(255, 255, 255, 0.04), transparent 44%);
-  --hero-border: rgba(236, 231, 221, 0.08);
   color-scheme: dark;
 }
 
