@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { getCollection, render } from 'astro:content';
+import { createPageTitle, site } from '../../lib/site';
 
 export async function getStaticPaths() {
   const works = await getCollection('works');
@@ -10,11 +11,11 @@ export async function getStaticPaths() {
 const { work } = Astro.props;
 const { Content } = await render(work);
 ---
-<BaseLayout title={`${work.data.title} | Works`} description={work.data.excerpt}>
+<BaseLayout title={createPageTitle(work.data.title)} description={work.data.excerpt}>
   <div class="container prose">
     <div class="kicker">{work.data.category}</div>
     <h1>{work.data.title}</h1>
-    <div class="meta">{work.data.date.toLocaleDateString('ja-JP')}</div>
+    <div class="meta">{work.data.date.toLocaleDateString(site.locale)}</div>
     <div class="panel" style="margin: 0 0 24px;">
       <div class="panel__visual" style="aspect-ratio: 16/9;"></div>
     </div>

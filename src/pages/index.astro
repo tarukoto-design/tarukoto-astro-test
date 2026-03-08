@@ -4,16 +4,17 @@ import NewsCard from '../components/news/NewsCard.astro';
 import SectionHeading from '../components/ui/SectionHeading.astro';
 import WorkCard from '../components/works/WorkCard.astro';
 import { getCollection } from 'astro:content';
+import { createPageTitle, pages } from '../lib/site';
 
 const works = (await getCollection('works')).sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
 const featuredWorks = works.filter((item) => item.data.featured).slice(0, 3);
 const news = (await getCollection('news')).sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf()).slice(0, 2);
 ---
-<BaseLayout title="TARUKOTO Sample | Top" description="Astro minimal sample top page">
+<BaseLayout title={createPageTitle(pages.home.title)} description={pages.home.description}>
   <div class="container">
     <section class="hero">
       <div>
-        <div class="kicker">Minimal Astro Sample</div>
+        <div class="kicker">{pages.home.kicker}</div>
         <h1>トップ / About / News / Works の<br />最小構成サンプル</h1>
         <p class="lead">Astro・GitHub・公開サービスを使って、まずは小さく公開まで試すためのサンプルです。CMSは使わず、News と Works は Markdown で管理します。</p>
         <a class="button" href="/works">制作実績を見る →</a>

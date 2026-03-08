@@ -1,9 +1,10 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import { createPageTitle, pages } from '../lib/site';
 ---
-<BaseLayout title="TARUKOTO Sample | About" description="About page sample">
+<BaseLayout title={createPageTitle(pages.about.title)} description={pages.about.description}>
   <div class="container prose">
-    <div class="kicker">About</div>
+    <div class="kicker">{pages.about.kicker}</div>
     <h1>わたしたちについて</h1>
     <p class="lead">ここは About ページのサンプルです。デザイン事務所として大切にしていること、どんな相手と相性が良いか、どんな姿勢で制作しているかをまとめる想定です。</p>
     <section class="section">

@@ -3,15 +3,16 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import SectionHeading from '../../components/ui/SectionHeading.astro';
 import WorkCard from '../../components/works/WorkCard.astro';
 import { getCollection } from 'astro:content';
+import { createPageTitle, pages } from '../../lib/site';
 
 const works = (await getCollection('works')).sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
 ---
-<BaseLayout title="TARUKOTO Sample | Works" description="Works list sample">
+<BaseLayout title={createPageTitle(pages.works.title)} description={pages.works.description}>
   <div class="container">
-    <div class="kicker">Works</div>
-    <h1>制作実績</h1>
+    <div class="kicker">{pages.works.kicker}</div>
+    <h1>{pages.works.heading}</h1>
     <section class="section">
-      <SectionHeading title="Works List" note="一覧ページもテンプレート化可能" />
+      <SectionHeading title={pages.works.listTitle} note={pages.works.listNote} />
       <div class="grid">
         {works.map((work) => <WorkCard work={work} href={`/works/${work.slug}/`} />)}
       </div>
