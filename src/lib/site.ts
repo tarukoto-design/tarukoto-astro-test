@@ -22,16 +22,6 @@ export const pages = {
     description: "About page sample",
     kicker: "About",
   },
-  news: {
-    href: "/news",
-    navLabel: "News",
-    title: "News",
-    description: "News list sample",
-    kicker: "News",
-    heading: "お知らせ",
-    listTitle: "News List",
-    listNote: "src/content/news にファイル追加",
-  },
   works: {
     href: "/works",
     navLabel: "Works",
@@ -47,7 +37,6 @@ export const pages = {
 export const navItems = [
   { href: pages.home.href, label: pages.home.navLabel },
   { href: pages.about.href, label: pages.about.navLabel },
-  { href: pages.news.href, label: pages.news.navLabel },
   { href: pages.works.href, label: pages.works.navLabel },
 ];
 

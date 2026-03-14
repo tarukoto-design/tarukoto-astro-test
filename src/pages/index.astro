@@ -1,6 +1,5 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
-import NewsCard from "../components/news/NewsCard.astro";
 import SectionHeading from "../components/ui/SectionHeading.astro";
 import WorkCard from "../components/works/WorkCard.astro";
 import { getCollection } from "astro:content";
@@ -10,9 +9,6 @@ const works = (await getCollection("works")).sort(
   (a, b) => b.data.date.valueOf() - a.data.date.valueOf(),
 );
 const featuredWorks = works.filter((item) => item.data.featured).slice(0, 3);
-const news = (await getCollection("news"))
-  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
-  .slice(0, 2);
 ---
 
 <BaseLayout
@@ -23,10 +19,10 @@ const news = (await getCollection("news"))
     <section class="hero">
       <div>
         <div class="kicker">{pages.home.kicker}</div>
-        <h1>トップ / About / News / Works の<br />最小構成サンプル</h1>
+        <h1>Top / About / Works の<br />最小構成サンプル</h1>
         <p class="lead">
-          Astro・GitHub・公開サービスを使って、まずは小さく公開まで試すためのサンプルです。CMSは使わず、News
-          と Works は Markdown で管理します。
+          Astro・GitHub・公開サービスを使って、まずは小さく公開まで試すためのサンプルです。Works は Markdown
+          で管理し、トップ・About・Works の3ページ構成でまとめています。
         </p>
         <a class="button" href="/works">制作実績を見る →</a>
       </div>
@@ -59,17 +55,6 @@ const news = (await getCollection("news"))
         {
           featuredWorks.map((work) => (
             <WorkCard work={work} href={`/works/${work.slug}/`} />
-          ))
-        }
-      </div>
-    </section>
-
-    <section class="section">
-      <SectionHeading title="Latest News" note="Markdownで追加・更新" />
-      <div class="grid">
-        {
-          news.map((post) => (
-            <NewsCard post={post} href={`/news/${post.slug}/`} />
           ))
         }
       </div>

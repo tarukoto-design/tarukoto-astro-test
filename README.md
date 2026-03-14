@@ -3,7 +3,6 @@
 最小構成:
 - Top
 - About
-- News
 - Works
 
 ## 使い方
@@ -12,8 +11,7 @@
 3. `npm run dev`
 4. ブラウザで `http://localhost:4321`
 
-## News / Works の更新方法
-- `src/content/news/*.md`
+## Works の更新方法
 - `src/content/works/*.md`
 
 Markdown ファイルを追加すると、一覧ページと詳細ページに反映されます。
